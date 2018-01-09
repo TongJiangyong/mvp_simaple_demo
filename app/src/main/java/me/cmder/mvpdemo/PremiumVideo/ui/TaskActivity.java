@@ -17,10 +17,11 @@ import me.cmder.mvpdemo.data.bean.TaskBean;
 //activity的作用主要是创建View（fragment），以及创建presenter，并把view传递给presenter
 public class TaskActivity extends Activity implements TaskContract.View, View.OnClickListener {
 
-    @BindView(R.id.txt)
-    TextView txt;
-    @BindView(R.id.btn)
-    Button btn;
+
+    @BindView(R.id.tv_showData)
+    TextView tv_ShowData;
+    @BindView(R.id.bt_setData)
+    Button bt_SetData;
     private TaskContract.Presenter mPresenter;
 
     @Override
@@ -28,7 +29,7 @@ public class TaskActivity extends Activity implements TaskContract.View, View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        btn.setOnClickListener(this);
+        bt_SetData.setOnClickListener(this);
         //一定要加，比较重要
         new TaskPresenter(this);
     }
@@ -52,7 +53,7 @@ public class TaskActivity extends Activity implements TaskContract.View, View.On
 
     @Override
     public void showData(TaskBean taskBean) {
-        txt.setText(taskBean.getData());
+        tv_ShowData.setText(taskBean.getData());
     }
 
     @Override
@@ -61,12 +62,11 @@ public class TaskActivity extends Activity implements TaskContract.View, View.On
     }
 
 
-
-//统一通过activity或者fragment的接口处理事件监听
+    //统一通过activity或者fragment的接口处理事件监听
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn:
+            case R.id.bt_setData:
                 mPresenter.fetchData();
                 break;
             default:

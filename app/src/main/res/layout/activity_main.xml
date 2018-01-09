@@ -16,12 +16,12 @@
         tools:context="me.cmder.mvpdemo.PremiumVideo.ui.TaskFragment">
 
         <TextView
-            android:id="@+id/txt"
+            android:id="@+id/tv_showData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/btn"
+            android:id="@+id/bt_setData"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
