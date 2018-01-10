@@ -12,7 +12,7 @@ import me.cmder.mvpdemo.data.bean.TaskBean;
 
 //统一管理view与presenter的所有的接口,每一个完整的业务，实现一个contract
 //一个继承view基类的接口类+一个继承presenter的接口类
-public interface TaskContract {
+public interface ITaskContract {
 
     interface View extends IBaseView<Presenter> {
 

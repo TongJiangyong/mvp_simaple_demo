@@ -1,20 +1,11 @@
 package me.cmder.mvpdemo.PremiumVideo.presenter;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-
-import java.util.concurrent.Callable;
-
-import io.reactivex.Flowable;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.Subject;
-import me.cmder.mvpdemo.PremiumVideo.TaskContract;
+import me.cmder.mvpdemo.PremiumVideo.ITaskContract;
 import me.cmder.mvpdemo.PremiumVideo.model.TaskAction;
 import me.cmder.mvpdemo.data.bean.TaskBean;
 
@@ -24,12 +15,12 @@ import me.cmder.mvpdemo.data.bean.TaskBean;
 
 //视图展示部分，用户动作触发
 //约定，AGEventHandler不在view做触发，在presenter做实现和转发
-public class TaskPresenter implements TaskContract.Presenter {
+public class TaskPresenter implements ITaskContract.Presenter {
 
-    private TaskContract.View mTask0View;
+    private ITaskContract.View mTask0View;
     private TaskAction taskAction = TaskAction.getInstance();
 
-    public TaskPresenter(TaskContract.View mTask0View) {
+    public TaskPresenter(ITaskContract.View mTask0View) {
         this.mTask0View = mTask0View;
         mTask0View.setPresenter(this);
     }
@@ -51,7 +42,6 @@ public class TaskPresenter implements TaskContract.Presenter {
          // 这里presenter直接调用UI线程，不是特别好，
          // 如果有阻塞或者网络可能需要rxjava，不然只能用hand.post，不太好....
          **/
-        //TODO 最好请希明在taskAction中针对如下耗时(reBuildStringCostTime)的方法，使用rxjava做一个范例程序
         Observable.just(taskAction.reBuildStringCostTime(task))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -9,20 +9,20 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.cmder.mvpdemo.PremiumVideo.TaskContract;
+import me.cmder.mvpdemo.PremiumVideo.ITaskContract;
 import me.cmder.mvpdemo.PremiumVideo.presenter.TaskPresenter;
 import me.cmder.mvpdemo.R;
 import me.cmder.mvpdemo.data.bean.TaskBean;
 
 //activity的作用主要是创建View（fragment），以及创建presenter，并把view传递给presenter
-public class TaskActivity extends Activity implements TaskContract.View, View.OnClickListener {
+public class TaskActivity extends Activity implements ITaskContract.View, View.OnClickListener {
 
 
     @BindView(R.id.tv_showData)
     TextView tv_ShowData;
     @BindView(R.id.bt_setData)
     Button bt_SetData;
-    private TaskContract.Presenter mPresenter;
+    private ITaskContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class TaskActivity extends Activity implements TaskContract.View, View.On
     }
 
     @Override
-    public void setPresenter(TaskContract.Presenter presenter) {
+    public void setPresenter(ITaskContract.Presenter presenter) {
         this.mPresenter = presenter;
     }
 
