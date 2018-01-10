@@ -29,7 +29,7 @@ public class TaskAction {
     //耗时方法
     public TaskBean reBuildStringCostTime(TaskBean taskBean){
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -38,6 +38,8 @@ public class TaskActivity extends Activity implements TaskContract.View, View.On
     public void onDestroy() {
         super.onDestroy();
         //TODO 感觉缺少presenter的销毁方法，有隐患，请希明补充下
+        // presenter的销毁方法请在各个异步回调过程中自行处理，不要进行统一处理，主要就是防止是实际类型为Activity的Context被强引用导致的内存泄漏
+        // Context可以通过实现View层的obtainContext来获取
     }
 
     @Override
